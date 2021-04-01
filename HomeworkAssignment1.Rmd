@@ -9,7 +9,7 @@ output:
 First, we read in all the libraries we need for the project. 
 
 
-```{r, echo=FALSE}
+```{r}
 library(knitr)
 library(tidyverse)
 library(dbplyr)
@@ -152,5 +152,5 @@ df4_stepsmean2 <- df4_stepsmean %>% summarise(steps=mean(steps))
 qplot(interval, steps, data=df4_stepsmean2, facets= factor_we~.) + geom_line()+ xlab("Interval") + ylab("Number of Steps")
 ```
 ```{r}
-knit2html("Course_Project_1_reproducible_research_vs2.0.Rmd")
+knit2html("HomeworkAssignment1.Rmd")
 ```
