@@ -6,7 +6,7 @@ output:
   pdf_document: default
 ---
   
-First, we read in all the libraries we need for the project: knite, tidyverse, dbplyr, ggplot2, scales. 
+First, we read in all the libraries we need for the project: knite, tidyverse, dbplyr, ggplot2, scales as follows:
 
 
 ```{r}
