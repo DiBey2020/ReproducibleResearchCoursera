@@ -37,7 +37,7 @@ total_steps$date <- as.Date(total_steps$date)
 ggplot(total_steps, aes(n)) + geom_histogram(bins=61)+ xlab ( "Total number of steps on that day") + ylab("Count")
 ```
 
-![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24-1.png)
+<img src="HomeworkAssignment1_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
 
 ### Mean and median number of steps taken each day
@@ -61,13 +61,20 @@ interval_steps2 <- interval_steps %>% summarise(steps=mean(steps, na.rm=TRUE), n
 plot(type="l", interval_steps2$interval, interval_steps2$steps, xlab="Interval", ylab="Number of Steps")
 ```
 
-![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.png)
+<img src="HomeworkAssignment1_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 
 We calculate the interval in which the maximum number of steps were recorded via:
 
 ```r
 int <- interval_steps2[interval_steps2$steps==max(interval_steps2$steps),]
 int
+```
+
+```
+## # A tibble: 1 x 3
+##   interval steps na.rm
+##      <int> <dbl> <lgl>
+## 1      835  206. TRUE
 ```
 
 The maximum number of steps is reached at the 835th interval of steps taken on average for all days recorded.
@@ -122,6 +129,18 @@ The average number of steps for each interval are:
 head(averages_per_interval)
 ```
 
+```
+## # A tibble: 6 x 2
+##   interval  steps
+##      <int>  <dbl>
+## 1        0 1.72  
+## 2        5 0.340 
+## 3       10 0.132 
+## 4       15 0.151 
+## 5       20 0.0755
+## 6       25 2.09
+```
+
 The following code chunk puts out the index values of the missing values
 
 
@@ -136,12 +155,32 @@ NA_Values <- data_activity[indices,,]
 head(data_activity[indices,,])
 ```
 
+```
+##   steps       date interval
+## 1    NA 2012-10-01        0
+## 2    NA 2012-10-01        5
+## 3    NA 2012-10-01       10
+## 4    NA 2012-10-01       15
+## 5    NA 2012-10-01       20
+## 6    NA 2012-10-01       25
+```
+
 Merge the dataframe with the interval averages with the data_activity data frame 
 
 ```r
 NA_Values_grouped <- NA_Values %>% group_by(interval)
 result_NA_removed <- merge(NA_Values_grouped, averages_per_interval, by="interval")
 head(result_NA_removed)
+```
+
+```
+##   interval steps.x       date  steps.y
+## 1        0      NA 2012-10-01 1.716981
+## 2        0      NA 2012-11-30 1.716981
+## 3        0      NA 2012-11-04 1.716981
+## 4        0      NA 2012-11-09 1.716981
+## 5        0      NA 2012-11-14 1.716981
+## 6        0      NA 2012-11-10 1.716981
 ```
 We replace the original steps column which still contains the NA values and we order the dataframe via the date in order to perform the full join of the rows where the NAs have been replaced and the dataframe from which the NA rows have been substracted - after the join, we have the full data frame without NAs and with the mean value of steps of the respective interval in place of the original NAs. 
 
@@ -189,7 +228,7 @@ total_steps_withoutNA$date <- as.Date(total_steps$date)
 ggplot(total_steps_withoutNA, aes(n)) + geom_histogram(bins=61)+ xlab ( "Total number of steps - with NA imputed - on that day") + ylab("Count")
 ```
 
-![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.png)
+<img src="HomeworkAssignment1_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 We notice that the median and mean increase after imputing. 
 
@@ -216,129 +255,5 @@ df4_stepsmean2 <- df4_stepsmean %>% summarise(steps=mean(steps))
 qplot(interval, steps, data=df4_stepsmean2, facets= factor_we~.) + geom_line()+ xlab("Interval") + ylab("Number of Steps")
 ```
 
-![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41-1.png)
+<img src="HomeworkAssignment1_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
-```r
-knit2html("HomeworkAssignment1.Rmd")
-```
-
-```
-## 
-## 
-## processing file: HomeworkAssignment1.Rmd
-```
-
-```
-##   |                                                                        |                                                                |   0%  |                                                                        |..                                                              |   3%
-##   ordinary text without R code
-## 
-##   |                                                                        |...                                                             |   5%
-## label: unnamed-chunk-43
-##   |                                                                        |.....                                                           |   8%
-##   ordinary text without R code
-## 
-##   |                                                                        |.......                                                         |  11%
-## label: unnamed-chunk-44 (with options) 
-## List of 1
-##  $ echo: logi FALSE
-## 
-##   |                                                                        |........                                                        |  13%
-##   ordinary text without R code
-## 
-##   |                                                                        |..........                                                      |  16%
-## label: unnamed-chunk-45
-```
-
-```
-##   |                                                                        |............                                                    |  18%
-##   ordinary text without R code
-## 
-##   |                                                                        |.............                                                   |  21%
-## label: unnamed-chunk-46
-##   |                                                                        |...............                                                 |  24%
-##   ordinary text without R code
-## 
-##   |                                                                        |.................                                               |  26%
-## label: unnamed-chunk-47
-```
-
-```
-##   |                                                                        |...................                                             |  29%
-##   ordinary text without R code
-## 
-##   |                                                                        |....................                                            |  32%
-## label: unnamed-chunk-48
-##   |                                                                        |......................                                          |  34%
-##   ordinary text without R code
-## 
-##   |                                                                        |........................                                        |  37%
-## label: unnamed-chunk-49
-##   |                                                                        |.........................                                       |  39%
-## label: unnamed-chunk-50
-##   |                                                                        |...........................                                     |  42%
-## label: unnamed-chunk-51
-##   |                                                                        |.............................                                   |  45%
-##   ordinary text without R code
-## 
-##   |                                                                        |..............................                                  |  47%
-## label: unnamed-chunk-52
-##   |                                                                        |................................                                |  50%
-##   ordinary text without R code
-## 
-##   |                                                                        |..................................                              |  53%
-## label: unnamed-chunk-53
-##   |                                                                        |...................................                             |  55%
-##   ordinary text without R code
-## 
-##   |                                                                        |.....................................                           |  58%
-## label: unnamed-chunk-54
-##   |                                                                        |.......................................                         |  61%
-##   ordinary text without R code
-## 
-##   |                                                                        |........................................                        |  63%
-## label: unnamed-chunk-55
-##   |                                                                        |..........................................                      |  66%
-##   ordinary text without R code
-## 
-##   |                                                                        |............................................                    |  68%
-## label: unnamed-chunk-56
-##   |                                                                        |.............................................                   |  71%
-##   ordinary text without R code
-## 
-##   |                                                                        |...............................................                 |  74%
-## label: unnamed-chunk-57
-##   |                                                                        |.................................................               |  76%
-##   ordinary text without R code
-## 
-##   |                                                                        |...................................................             |  79%
-## label: unnamed-chunk-58
-##   |                                                                        |....................................................            |  82%
-##   ordinary text without R code
-## 
-##   |                                                                        |......................................................          |  84%
-## label: unnamed-chunk-59
-##   |                                                                        |........................................................        |  87%
-##   ordinary text without R code
-## 
-##   |                                                                        |.........................................................       |  89%
-## label: unnamed-chunk-60
-##   |                                                                        |...........................................................     |  92%
-## label: unnamed-chunk-61
-```
-
-```
-##   |                                                                        |.............................................................   |  95%
-##   ordinary text without R code
-## 
-##   |                                                                        |..............................................................  |  97%
-## label: unnamed-chunk-62
-```
-
-```
-##   |                                                                        |................................................................| 100%
-## label: unnamed-chunk-63
-```
-
-```
-## output file: HomeworkAssignment1.md
-```
