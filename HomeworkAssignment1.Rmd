@@ -151,6 +151,3 @@ df4_stepsmean2 <- df4_stepsmean %>% summarise(steps=mean(steps))
 
 qplot(interval, steps, data=df4_stepsmean2, facets= factor_we~.) + geom_line()+ xlab("Interval") + ylab("Number of Steps")
 ```
-```{r}
-#knit2html("HomeworkAssignment1.Rmd")
-```

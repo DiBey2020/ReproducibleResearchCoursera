@@ -37,7 +37,7 @@ total_steps$date <- as.Date(total_steps$date)
 ggplot(total_steps, aes(n)) + geom_histogram(bins=61)+ xlab ( "Total number of steps on that day") + ylab("Count")
 ```
 
-<img src="HomeworkAssignment1_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+![plot of chunk unnamed-chunk-43](figure/unnamed-chunk-43-1.png)
 
 
 ### Mean and median number of steps taken each day
@@ -61,7 +61,7 @@ interval_steps2 <- interval_steps %>% summarise(steps=mean(steps, na.rm=TRUE), n
 plot(type="l", interval_steps2$interval, interval_steps2$steps, xlab="Interval", ylab="Number of Steps")
 ```
 
-<img src="HomeworkAssignment1_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+![plot of chunk unnamed-chunk-45](figure/unnamed-chunk-45-1.png)
 
 We calculate the interval in which the maximum number of steps were recorded via:
 
@@ -228,7 +228,7 @@ total_steps_withoutNA$date <- as.Date(total_steps$date)
 ggplot(total_steps_withoutNA, aes(n)) + geom_histogram(bins=61)+ xlab ( "Total number of steps - with NA imputed - on that day") + ylab("Count")
 ```
 
-<img src="HomeworkAssignment1_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+![plot of chunk unnamed-chunk-59](figure/unnamed-chunk-59-1.png)
 
 We notice that the median and mean increase after imputing. 
 
@@ -255,5 +255,4 @@ df4_stepsmean2 <- df4_stepsmean %>% summarise(steps=mean(steps))
 qplot(interval, steps, data=df4_stepsmean2, facets= factor_we~.) + geom_line()+ xlab("Interval") + ylab("Number of Steps")
 ```
 
-<img src="HomeworkAssignment1_files/figure-html/unnamed-chunk-41-1.png" width="672" />
-
+![plot of chunk unnamed-chunk-60](figure/unnamed-chunk-60-1.png)
